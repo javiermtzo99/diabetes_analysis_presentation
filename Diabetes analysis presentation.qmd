@@ -1,7 +1,9 @@
 ---
 title: "Group 15 522 Project"
+subtitle: "Predicting Diabetes in Pima Indian Women Using Logistic Regression"
 author: "Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez"
 format: revealjs
+slide-number: true
 jupyter: python3
 css: styles.css
 ---
@@ -108,7 +110,7 @@ css: styles.css
 
 ---
 
-## Analysis Methodology4
+## Analysis Methodology
 
 - Data split: 70% training, 30% testing.
 - Features: structured numeric data and no missing values.
@@ -116,7 +118,7 @@ css: styles.css
 
 ---
 
-## Analysis Methodology
+## Analysis Methodology (cont'd)
 
 - Accuracy as the evaluation metric for model performance.
 - DummyClassifer as baseline model.
