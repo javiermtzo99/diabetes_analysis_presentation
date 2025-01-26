@@ -1,0 +1,84 @@
+---
+title: "DSCI 542: Lab3 Question4"
+author: "Block 3 Group 15"
+date: "2025-01-26"
+format: pdf
+editor: source
+---
+
+## Talk outline + Slide submission
+rubric: {presentations + outline rubric = 10+3}
+
+## Talk Outline
+
+#### Analysis Methodology [Jenny]
+
+- **Data Split**:  
+  - 70% for training, 30% for testing to evaluate model performance.
+  - Ensures robust training while testing model generalization.
+- **Features**:  
+  - Structured numeric data with no missing values—ensuring the dataset is clean and ready for modeling.
+- **Preprocessing**:  
+  - Standardization applied to all features for consistent scale.
+  - Ensures stable model performance and easy interpretation of coefficients.
+
+#### Analysis Methodology (cont'd) [Jenny]
+
+- **Evaluation Metric**:  
+  - Accuracy used to measure model performance.
+  - Provides a straightforward metric to assess how well the model predicts diabetes.
+
+- **Baseline Model**:  
+  - DummyClassifier serves as the baseline, providing a simple comparison.
+
+- **Logistic Regression**:  
+  - Chosen for its ability to handle classification tasks effectively.
+  - Its coefficients help identify the importance of each feature, offering insight into how each variable influences the model’s predictions.
+  - Provides probability-based predictions for interpretability.
+
+- **Hyperparameter Tuning**:  
+  - RandomizedSearchCV used to optimize `C` (model complexity).
+  - The range of `C` spans from $10^{-5}$ to $10^{5}$ to find the best balance between regularization and data fitting.
+
+#### Results - Feature Importance [Jenny]
+
+- **Feature Importance via Coefficients**:  
+  - Coefficients represent the influence of each feature on the model's predictions.
+  - **Glucose** is the strongest positive influence (0.724), followed by **BMI** (0.389).
+  - **Pregnancies**, **Age**, and **DiabetesPedigreeFunction** also contribute but with smaller effects.
+  - **SkinThickness** has a negative influence (-0.007), indicating minimal impact.
+
+#### Results - Model Evaluation [Jenny]
+
+- **Baseline Model**:  
+  - Accuracy of **DummyClassifier**: 0.672, providing a reference for comparison.
+- **Logistic Regression Performance**:  
+  - Training accuracy: **0.743** (cross-validation mean).
+  - Test accuracy: **0.750** - indicating reasonable model generalization.
+  - The accuracy is solid but leaves room for improvements, especially considering clinical applications.
+
+#### Results - Confusion Matrix [Jenny]
+
+- **Misclassifications**:  
+  - Out of 217 total test cases, 54 misclassifications.
+  - **41 false negatives**: Diabetic cases predicted as non-diabetic—critical in clinical settings.
+  - **13 false positives**: Non-diabetic cases predicted as diabetic—less critical but still a concern.
+  - In a clinical context, reducing **false negatives** is crucial for patient safety and intervention.
+
+#### Results - PR and ROC Curve [Jenny]
+
+- **Precision-Recall Curve**:  
+  - Evaluates the trade-off between true positives and false positives at various thresholds.
+  - **No optimal threshold** observed that balances both high precision and recall.
+
+- **ROC Curve**:  
+  - Shows the model’s true positive rate vs. false positive rate.
+  - Similarly, **no optimal threshold** observed that balances both high true positive and low false positive rates.
+  - Further model adjustments may be needed to improve performance across all thresholds.
+
+#### Results - Clinical Utility [Jenny]
+
+- **Visualization of Predicted Probabilities**:  
+  - Helps clinicians understand the model’s confidence in its predictions.
+  - If probability is not high enough, additional tests may be considered.
+  - This visualization aids in clinical decision-making, highlighting both correct predictions and false negatives.
