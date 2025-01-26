@@ -5,6 +5,41 @@ format: revealjs
 jupyter: python3
 ---
 
+## Dataset - Scope
+- The dataset contains 768 female patients of Pima Indian heritage, all at least 21 years old.
+- This dataset comes from the National Institute of Diabetes and Digestive and Kidney Diseases and was created by selecting instances from a larger medical database.
+- The goal: Predict diabetes (Yes/No) based on diagnostic features.
+- Available via Kaggle:  
+  [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data).
+
+---
+
+## Dataset - Feature Descriptions
+
+::: {.small}
+| **Feature**                 | **Description** |
+|-----------------------------|----------------|
+| **Pregnancies**             | Number of times the patient has been pregnant. |
+| **Glucose**                 | Plasma glucose concentration measured 2 hours after an oral glucose tolerance test. |
+| **BloodPressure**           | Diastolic blood pressure (mm Hg). |
+| **SkinThickness**           | Triceps skin fold thickness (mm), used to estimate body fat. |
+| **Insulin**                 | 2-hour serum insulin level (mu U/ml). |
+| **BMI**                     | Body mass index, calculated as weight (kg) / height (m²). |
+| **DiabetesPedigreeFunction** | A function that scores the likelihood of diabetes based on family history. |
+| **Age**                     | Age of the patient (in years). |
+| **Outcome**                 | Target variable: **1 (Diabetic), 0 (Non-Diabetic)**. **268 out of 768** patients are diabetic. |
+:::
+
+---
+
+## Dataset - Feature Distribution
+- **Histograms of key features**
+- Displays the **distribution across diabetic and non-diabetic groups**.
+
+![Feature Histograms](figures/feature_histograms.png)
+
+---
+
 ## Analysis Methodology4
 
 - Data split: 70% training, 30% testing.
@@ -19,6 +54,32 @@ jupyter: python3
 - DummyClassifer as baseline model.
 - Logistic Regression model for classification.
 - Hyperparameter tuning use RandomizedSearchCV to optimize `C` within the range from $10 ^{-5}$ to $10 ^{5}$.
+
+---
+
+## Analysis - Training Overview
+
+- **Baseline Model** Dummy Classifier  
+- Achieved **accuracy = 0.672** (predicting majority class).
+
+**Final Model** Logistic Regression  
+- Used **cross-validation** for **hyperparameter tuning**.
+- Optimized **C** parameter for better performance.
+
+---
+
+## Analysis - Hyperparameter Tuning
+- **RandomizedSearchCV** used to optimize C.
+- Explored values from **1e-5 to 1e5**.
+- Best C found: **0.027**.
+
+```python
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.linear_model import LogisticRegression
+
+param_grid = {"C": loguniform(1e-5, 1e5)}
+search = RandomizedSearchCV(LogisticRegression(), param_grid, n_iter=100)
+```
 
 ---
 
