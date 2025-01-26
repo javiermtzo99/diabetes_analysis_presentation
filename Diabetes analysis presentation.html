@@ -8,7 +8,7 @@
 <link href="Diabetes analysis presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="Diabetes analysis presentation_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="Diabetes analysis presentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.5.56">
 
   <meta name="author" content="Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez">
   <title>Group 15 522 Project</title>
@@ -403,6 +403,42 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </div>
 
 </section>
+<section id="why-is-diabetic-study-important" class="slide level2">
+<h2>Why is Diabetic Study Important?</h2>
+<ul>
+<li>Diabetes is a widespread condition affecting millions globally</li>
+<li>Identifying predictors helps focus on preventive measures for at-risk populations</li>
+<li>Different populations may have unique risk factors</li>
+<li>Reduce healthcare costs and improve the quality of life by preventing long-term complications</li>
+</ul>
+</section>
+<section id="previous-research" class="slide level2">
+<h2>Previous Research</h2>
+<ul>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2245318/">Use of Neural Networks (Jack W Smith, et. al)</a></li>
+<li><a href="https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data">Logistic Regression (UCI Machine Learning)</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6232260/">Random Forestion (Quan Zou, et. al)</a></li>
+</ul>
+<h3 id="what-is-unique-about-our-study">What is unique about our study?</h3>
+<ul>
+<li>Using Logistic Regression for easier interpretation</li>
+<li>Use of Data Validation and Class Imbalance for better accuracy</li>
+</ul>
+</section>
+<section id="why-use-a-logistic-regression-model" class="slide level2">
+<h2>Why use a Logistic Regression model?</h2>
+<ul>
+<li>Study about predicting whether an individual has diabetes or not
+<ul>
+<li>Binary Classification</li>
+</ul></li>
+<li>Provides feature coefficients that directly reflect the importance and direction</li>
+<li>Focis is on probabilities rather than hard classifications
+<ul>
+<li>Can help clinicians determine confidence level of a diagnosis</li>
+</ul></li>
+</ul>
+</section>
 <section id="dataset---scope" class="slide level2">
 <h2>Dataset - Scope</h2>
 <ul>
@@ -483,6 +519,33 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </div>
 
 <img data-src="figures/histogram_imbalance.png" class="r-stretch"></section>
+<section id="data-validation---pandera" class="slide level2">
+<h2>Data Validation - Pandera</h2>
+<p><span style="font-size: 10px;"> <!-- Adjusted the size to 14px --> <img data-src="figures/glucose_outlier.png" style="width:50.0%"></span></p>
+<ul>
+<li>Ensures data integrity: Free of outliers &amp; invalid values</li>
+<li>Based on medically plausible values:
+<ul>
+<li>Glucose &amp; Blood Pressure can’t be 0 if person is alive</li>
+</ul></li>
+</ul>
+<p><img data-src="figures/schema.png" style="width:70.0%"> </p>
+</section>
+<section class="slide level2">
+
+<h3 id="data-validation---deepchecks">Data Validation - Deepchecks</h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="figures/correlation.png"></p>
+<p><img data-src="figures/deepcheck.png"></p>
+</div><div class="column" style="width:40%;">
+<p><br></p>
+<ul>
+<li><p>Correlations close to standard multicollinearity threshold of 0.7</p></li>
+<li><p>Use Deepchecks to ensure no multicollinearity is occuring</p></li>
+</ul>
+</div></div>
+</section>
 <section id="analysis-methodology4" class="slide level2">
 <h2>Analysis Methodology4</h2>
 <ul>
