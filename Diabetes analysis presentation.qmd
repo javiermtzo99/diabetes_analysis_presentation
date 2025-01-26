@@ -6,6 +6,34 @@ jupyter: python3
 css: styles.css
 ---
 
+## Why is Diabetic Study  Important?
+- Diabetes is a widespread condition affecting millions globally
+- Identifying predictors helps focus on preventive measures for at-risk populations
+- Different populations may have unique risk factors
+- Reduce healthcare costs and improve the quality of life by preventing long-term complications
+
+---
+
+## Previous Research
+- [Use of Neural Networks (Jack W Smith, et. al)](https://pmc.ncbi.nlm.nih.gov/articles/PMC2245318/)
+- [Logistic Regression (UCI Machine Learning)](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data)
+- [Random Forestion (Quan Zou, et. al)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6232260/)
+
+### What is unique about our study?
+- Using Logistic Regression for easier interpretation
+- Use of Data Validation and Class Imbalance for better accuracy
+
+---
+
+## Why use a Logistic Regression model?
+- Study about predicting whether an individual has diabetes or not
+  - Binary Classification
+- Provides feature coefficients that directly reflect the importance and direction
+- Focis is on probabilities rather than hard classifications
+  -  Can help clinicians determine confidence level of a diagnosis
+
+---
+
 ## Dataset - Scope
 - The dataset contains 768 female patients of Pima Indian heritage, all at least 21 years old.
 - This dataset comes from the National Institute of Diabetes and Digestive and Kidney Diseases and was created by selecting instances from a larger medical database.
@@ -43,6 +71,40 @@ css: styles.css
   - Potential **higher false negatives** (misclassifying diabetic patients as non-diabetic).
 :::
 ![](figures/histogram_imbalance.png)
+
+---
+
+## Data Validation - Pandera
+<span style="font-size: 10px;"> <!-- Adjusted the size to 14px -->
+![](figures/glucose_outlier.png){width=50%}
+
+- Ensures data integrity: Free of outliers & invalid values
+- Based on medically plausible values:
+  - Glucose & Blood Pressure can't be 0 if person is alive
+
+![](figures/schema.png){width=70%}
+</span>
+
+---
+
+### Data Validation - Deepchecks
+:::: {.columns}
+
+::: {.column width="60%"}
+![](figures/correlation.png)
+
+![](figures/deepcheck.png)
+:::
+
+::: {.column width="40%"}
+<br/>
+
+- Correlations close to standard multicollinearity threshold of 0.7
+
+- Use Deepchecks to ensure no multicollinearity is occuring
+:::
+
+:::: 
 
 ---
 
@@ -168,6 +230,8 @@ def save_model(model, filename="logistic_regression.pkl"):
 - Visualizing predicted probabilities to help clinicians assess model confidence.
 
 ![](figures/predict_chart.png){.nostretch fig-align="center" width="750"}
+
+---
 
 ## Discussion - Model Performance
 - Clinical Relevance: Model shows promise as a screening tool with baseline improvements.
