@@ -231,6 +231,8 @@ def save_model(model, filename="logistic_regression.pkl"):
 
 ![](figures/predict_chart.png){.nostretch fig-align="center" width="750"}
 
+---
+
 ## Discussion - Model Performance
 - Clinical Relevance: Model shows promise as a screening tool with baseline improvements.
 - Enhancement Approaches:
