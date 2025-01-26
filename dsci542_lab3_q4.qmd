@@ -41,6 +41,20 @@ rubric: {presentations + outline rubric = 10+3}
     - (e.g., which factors increase or decrease the likelihood of diabetes)
   - Probabilities provide richer information, such as a probability score that quantifies the likelihood of an individual having diabetes
 
+### Dataset - Scope
+- Dataset origin (National Institute of Diabetes and Digestive and Kidney Diseases)
+- Patient demographics (768 female patients, Pima Indian heritage)
+- Goal: Predict diabetes
+- Data source: Kaggle
+
+### Dataset - Feature Descriptions
+- Table of dataset features (Pregnancies, Glucose, Blood Pressure, etc.)
+
+### Dataset - Class Imbalance
+- Explanation of imbalance (500 non-diabetic, 268 diabetic)
+- Visualization of class distribution (bar chart)
+- Challenges & strategies to address imbalance
+
 #### Validation - Pandera [Inder]
   - Need to validate dataset to get rid of outliers
     - Features had values that were not medically possible i.e. (Gluvose being 0)
@@ -78,6 +92,17 @@ rubric: {presentations + outline rubric = 10+3}
   - Chosen for its ability to handle classification tasks effectively.
   - Its coefficients help identify the importance of each feature, offering insight into how each variable influences the model’s predictions.
   - Provides probability-based predictions for interpretability.
+
+### Analysis - Reproducible Data Pipeline
+- How a reproducible data pipeline was built
+- Custom functions for data preprocessing, feature selection, training, and evaluation
+- Outputs stored as tables, plots, models (pickle)
+- Dynamic parameter tuning and modular workflow
+
+### Analysis - Modular Function Design
+- Automation & Interdependency of functions
+- Code snippet: Saving models with pickle
+- Ensuring traceability and reproducibility
 
 - **Hyperparameter Tuning**:  
   - RandomizedSearchCV used to optimize `C` (model complexity).
