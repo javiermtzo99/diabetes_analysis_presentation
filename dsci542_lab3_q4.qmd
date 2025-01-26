@@ -92,10 +92,12 @@ rubric: {presentations + outline rubric = 10+3}
 
 #### Discussion - Model Performance [Jessica]
   - Clinical Relevance: 
-    - Model demonstrates potential as an initial screening tool for diabetes detection, especially given its improvement over the baseline.
+    - Model demonstrates potential as an initial screening tool for diabetes detection, 
+    especially given its improvement over the baseline.
     - Offers data-driven support for identifying at-risk individuals.
   - Enhancement Approaches:
-    - Examine 54 misclassified observations and compare with correctly classified examples to identify feature contributions.
+    - Examine 54 misclassified observations and compare with correctly classified examples to 
+    identify feature contributions.
     - Example: Combine related features or create new derived metrics (e.g., BMI adjusted for age).
 
 #### Discussion - Enhancement Opportunities [Jessica]
@@ -115,10 +117,12 @@ rubric: {presentations + outline rubric = 10+3}
           - Broaden demographic representation (diverse age groups, genders, and ethnicities).
 
 #### Conclusion - Key Findings [Jessica]
-  - Logistic regression effectively predicts diabetes among Pima Indian women using features like glucose, BMI, and pregnancies.
+  - Logistic regression effectively predicts diabetes among Pima Indian women using features like 
+  glucose, BMI, and pregnancies.
   - Achieved 0.750 accuracy on the test set, outperforming baseline Dummy Classifier’s 0.672.
   - Key predictors: Glucose (most influential) BMI, pregnancies.
-  - Challenges: 54 misclassifications (41 false negatives) present risks of undiagnosed cases, underscoring areas for refinement.
+  - Challenges: 54 misclassifications (41 false negatives) present risks of undiagnosed cases, 
+  underscoring areas for refinement.
 
 #### Conclusion - Clinical Implications [Jessica]
 - Clinical Potential:
@@ -131,6 +135,8 @@ rubric: {presentations + outline rubric = 10+3}
     - Refine predictors through feature engineering and additional data exploration.
     - Experiment with alternative machine learning models for better performance.
   - Expand Dataset:
-    - Incorporate additional data sources, such as lifestyle or genetic information, to improve accuracy and generalizability.
+    - Incorporate additional data sources, such as lifestyle or genetic information, 
+    to improve accuracy and generalizability.
   - Decision-Making Aid:
-    - Include probability estimates to support clinicians in identifying high-risk cases requiring further diagnostics.
+    - Include probability estimates to support clinicians in 
+    identifying high-risk cases requiring further diagnostics.
