@@ -151,13 +151,6 @@ rubric: {presentations + outline rubric = 10+3}
   - If probability is not high enough, additional tests may be considered.
   - This visualization aids in clinical decision-making, highlighting both correct predictions and false negatives.
 
-#### Results - Clinical Utility [Jenny]
-
-- **Visualization of Predicted Probabilities**:  
-  - Helps clinicians understand the model’s confidence in its predictions.
-  - If probability is not high enough, additional tests may be considered.
-  - This visualization aids in clinical decision-making, highlighting both correct predictions and false negatives.
-
 #### Discussion - Model Performance [Jessica]
   - Clinical Relevance: 
     - Model demonstrates potential as an initial screening tool for diabetes detection, 
