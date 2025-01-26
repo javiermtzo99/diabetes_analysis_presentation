@@ -11,6 +11,49 @@ rubric: {presentations + outline rubric = 10+3}
 
 ## Talk Outline
 
+#### Importance of Diabetic Study [Inder]
+- **Widespread Condition**:
+  - Discuss the increasing rates of both type 1 and type 2 diabetes
+  - Chronic nature of diabetes can have lifelong impact on individuals and societies.
+- **Identifying Predictors for Preventive Measures**:
+  - Importance of early diagnosis and understanding risk factors.
+  - Can reduce Healthcare Costs and Improving Quality of Life
+
+#### Previous Research [Inder]
+- **Neural Networks**:
+  - Strengths: ability to capture complex relationships in data
+  - Limitations: model interpretability & the need for large datasets.
+- **Logistic Regression**:
+  - Strength: Simplicity, efficiency, and good performance
+  - Limitation: Outliers in data effect model
+- **Random Forest**:
+  - Strengths: Good at dealing with missing data, and less prone to overfitting
+  - Limitations: Less interpretability, overly complex model
+
+#### What makes our study different [Inder]
+  - Explain the importance of data validation techniques, ensuring robust and reliable results.
+  - Discuss strategies for handling class imbalance
+  - Use Logistic Regression to interpret coefficients
+
+#### Reason of Choosing Logistic Regression [Inder]
+  - Study designed to predict if patient is diabetic or not which is Binary Classification
+  - Coefficients tell you the strength and direction of each feature’s impact on the outcome 
+    - (e.g., which factors increase or decrease the likelihood of diabetes)
+  - Probabilities provide richer information, such as a probability score that quantifies the likelihood of an individual having diabetes
+
+#### Validation - Pandera [Inder]
+  - Need to validate dataset to get rid of outliers
+    - Features had values that were not medically possible i.e. (Gluvose being 0)
+  - Previous study using Logistic Regression failed to do this
+    - should increase the accuracy for our model
+  - Justification of values chosen for each feature
+
+#### Validation - Deepchecks [Inder]
+  - Looking at correlation table see that Age & Pregnancy have Pearon correlation score of 0.56
+    - Close to Multicollinearity threshold of 0.7
+    - Multicollinearity can lead to unstable model coefficients, overfitting, and reduced interpretability 
+    - Explain how to use Deepchecks to confirm that feature do not pass correlation threshold
+
 #### Analysis Methodology [Jenny]
 
 - **Data Split**:  
