@@ -1,2 +1,2 @@
-# diabetes_analysis_presentation
+# Diabetes analysis Presentation
 Diabetes analysis quarto presentation

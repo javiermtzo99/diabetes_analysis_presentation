@@ -1,0 +1,9 @@
+name: diabetes_presentation
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - quarto=1.5
+  - jupyter
+  - pyyaml

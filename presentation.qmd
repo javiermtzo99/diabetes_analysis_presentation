@@ -1,0 +1,136 @@
+---
+title: "Group 15 522 Project"
+author: "Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez"
+format: revealjs
+jupyter: python3
+---
+
+## Analysis Methodology4
+
+- Data split: 70% training, 30% testing.
+- Features: structured numeric data and no missing values.
+- Preprocessing: standardization for easier coefficient interpretation and more stable model performance.
+
+---
+
+## Analysis Methodology
+
+- Accuracy as the evaluation metric for model performance.
+- DummyClassifer as baseline model.
+- Logistic Regression model for classification.
+- Hyperparameter tuning use RandomizedSearchCV to optimize `C` within the range from $10 ^{-5}$ to $10 ^{5}$.
+
+---
+
+## Results - Feature Importance
+
+- Feature importance measured by coefficients
+
+![](figures/coeff_table.png)
+
+---
+
+## Results - Model Evaluation
+
+- Dummy Classifier accuracy = 0.672.
+- Logistic Regression accuracy:
+  - Training set = [0.743] (cross-validation mean)
+  - Test set = 0.750
+
+---
+
+## Results - Confusion Matrix
+
+:::: {.columns}
+
+::: {.column width="40%"}
+<br/>
+
+#### 217 total test cases
+
+**54 misclassifications**
+
+- *41 false negatives*
+ 
+- *13 false positives*
+:::
+
+::: {.column width="60%"}
+![](figures/confusion_matrix_plot.png){}
+:::
+
+::::
+
+---
+
+## Results - PR and ROC Curve
+
+- Model performance does not achieve optimal trade-off across all thresholds.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](figures/precision_recall_plot.png)
+:::
+
+::: {.column width="50%"}
+![](figures/roc_curve.png)
+:::
+
+::::
+
+---
+
+## Results - Clinical Utility
+
+- Visualizing predicted probabilities to help clinicians assess model confidence.
+
+![](figures/predict_chart.png){.nostretch fig-align="center" width="750"}
+
+## Discussion - Model Performance
+- Clinical Relevance: Model shows promise as a screening tool with baseline improvements.
+- Enhancement Approaches:
+    - Examine 54 misclassified observations and compare with correctly classified examples to identify feature contributions.
+
+---
+
+## Discussion - Enhancement Opportunities
+- Explore feature engineering to improve model predictions.
+- Experiment with alternative classifiers:
+    - Random Forest: Accounts for feature interactions automatically.
+    - k-Nearest Neighbours (k-NN): Offers interpretable and decent predictions.
+    - Support Vector Classifier (SVC): Enables non-linear prediction using rbf kernel.
+
+---
+
+## Limitations & Future Directions
+- Dataset Limitations: Focuses solely on Pima Indian women aged 21 and older, limiting generalizability.
+- Future Data Exploration:
+    - Collaborate with data collectors for additional, useable information.
+    - Combine with external datasets:
+        - Broaden demographic coverage (age, gender, ethnicity) 
+        - Enable comprehensive insights and greater applicability.
+
+---
+
+## Conclusion - Key Findings
+- Logistic regression effectively predicts diabetes among Pima Indian women using features like glucose, BMI, and pregnancies.
+- Achieved 0.750 accuracy on the test set, outperforming baseline Dummy Classifier’s 0.672.
+- Key predictors: Glucose (most influential) BMI, pregnancies.
+- Challenges: 54 misclassifications, including 41 false negatives, highlight risks of undiagnosed cases.
+
+---
+
+## Conclusion - Clinical Implications
+- Clinical Potential:
+    - Logistic regression shows promise as an initial screening tool for early diabetes detection.
+    - Provides a data-driven approach to improve outcomes and reduce complications.
+
+---
+
+## Conclusion - Recommendations
+- Recommendations for Improvement:
+    - Feature engineering to refine predictors.
+    - Test alternative machine learning models 
+    - Incorporate additional data (e.g. Lifestyle factors, Genetic information etc.)
+    - Include probability estimates to aid clinical decision-making.
