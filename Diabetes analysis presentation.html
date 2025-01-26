@@ -96,6 +96,7 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="Diabetes analysis presentation_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="styles.css">
   <link href="Diabetes analysis presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Diabetes analysis presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="Diabetes analysis presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -414,7 +415,7 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </section>
 <section id="dataset---feature-descriptions" class="slide level2">
 <h2>Dataset - Feature Descriptions</h2>
-<div class="small">
+<div class="feature-description">
 <table class="caption-top">
 <colgroup>
 <col style="width: 64%">
@@ -461,20 +462,27 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </tr>
 <tr class="odd">
 <td><strong>Outcome</strong></td>
-<td>Target variable: <strong>1 (Diabetic), 0 (Non-Diabetic)</strong>. <strong>268 out of 768</strong> patients are diabetic.</td>
+<td>Target variable: <strong>1 (Diabetic), 0 (Non-Diabetic)</strong>.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="dataset---feature-distribution" class="slide level2">
-<h2>Dataset - Feature Distribution</h2>
+<section id="dataset---class-imbalance" class="slide level2">
+<h2>Dataset - Class Imbalance</h2>
+<div class="class-imbalance">
 <ul>
-<li><strong>Histograms of key features</strong></li>
-<li>Displays the <strong>distribution across diabetic and non-diabetic groups</strong>.</li>
+<li>The dataset is <strong>imbalanced</strong>, with significantly more <strong>non-diabetic</strong> cases.</li>
+<li><strong>268 out of 768</strong> patients (<strong>~35%</strong>) have diabetes, while <strong>500 (~65%)</strong> do not.</li>
+<li>This imbalance can impact model training, leading to:
+<ul>
+<li>A bias toward predicting <strong>non-diabetic cases</strong>.</li>
+<li>Potential <strong>higher false negatives</strong> (misclassifying diabetic patients as non-diabetic).</li>
+</ul></li>
 </ul>
+</div>
 
-<img data-src="figures/feature_histograms.png" class="r-stretch quarto-figure-center"><p class="caption">Feature Histograms</p></section>
+<img data-src="figures/histogram_imbalance.png" class="r-stretch"></section>
 <section id="analysis-methodology4" class="slide level2">
 <h2>Analysis Methodology4</h2>
 <ul>
@@ -492,28 +500,50 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 <li>Hyperparameter tuning use RandomizedSearchCV to optimize <code>C</code> within the range from <span class="math inline">\(10 ^{-5}\)</span> to <span class="math inline">\(10 ^{5}\)</span>.</li>
 </ul>
 </section>
-<section id="analysis---training-overview" class="slide level2">
-<h2>Analysis - Training Overview</h2>
+<section id="analysis---reproducible-data-pipeline" class="slide level2">
+<h2>Analysis - Reproducible Data Pipeline</h2>
+<div class="class-imbalance">
 <ul>
-<li><strong>Baseline Model</strong> Dummy Classifier<br>
-</li>
-<li>Achieved <strong>accuracy = 0.672</strong> (predicting majority class).</li>
+<li>Our analysis was structured as a <strong>reproducible pipeline</strong>, where each step was <strong>dependent on the previous</strong>.</li>
+<li>We designed <strong>customized functions</strong> to handle:
+<ul>
+<li><strong>Data preprocessing</strong></li>
+<li><strong>Feature selection</strong></li>
+<li><strong>Model training</strong></li>
+<li><strong>Evaluation &amp; visualization</strong></li>
+</ul></li>
+<li>Each function produced outputs such as:
+<ul>
+<li><strong>Plots, tables, and trained models (saved using <code>pickle</code>)</strong></li>
+</ul></li>
+<li>Functions were <strong>dynamic</strong>, allowing for:
+<ul>
+<li>Parameter tuning</li>
+<li>Adjustability based on dependencies</li>
+<li>Seamless workflow automation</li>
+</ul></li>
 </ul>
-<p><strong>Final Model</strong> Logistic Regression<br>
-- Used <strong>cross-validation</strong> for <strong>hyperparameter tuning</strong>. - Optimized <strong>C</strong> parameter for better performance.</p>
+</div>
 </section>
-<section id="analysis---hyperparameter-tuning" class="slide level2">
-<h2>Analysis - Hyperparameter Tuning</h2>
+<section id="analysis---modular-function-design" class="slide level2">
+<h2>Analysis - Modular Function Design</h2>
+<div class="class-imbalance">
 <ul>
-<li><strong>RandomizedSearchCV</strong> used to optimize C.</li>
-<li>Explored values from <strong>1e-5 to 1e5</strong>.</li>
-<li>Best C found: <strong>0.027</strong>.</li>
+<li>The pipeline followed a <strong>modular structure</strong>, ensuring:
+<ul>
+<li><strong>Reusability</strong>: Functions could be applied across different datasets.</li>
+<li><strong>Interdependency</strong>: Each function received input from a previous step.</li>
+<li><strong>Automation</strong>: No manual intervention needed once executed.</li>
+</ul></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RandomizedSearchCV</span>
-<span id="cb1-2"><a href=""></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb1-3"><a href=""></a></span>
-<span id="cb1-4"><a href=""></a>param_grid <span class="op">=</span> {<span class="st">"C"</span>: loguniform(<span class="fl">1e-5</span>, <span class="fl">1e5</span>)}</span>
-<span id="cb1-5"><a href=""></a>search <span class="op">=</span> RandomizedSearchCV(LogisticRegression(), param_grid, n_iter<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example of a function saving model outputs:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">import</span> pickle</span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a><span class="kw">def</span> save_model(model, filename<span class="op">=</span><span class="st">"logistic_regression.pkl"</span>):</span>
+<span id="cb1-4"><a href=""></a>    <span class="co">"""Save trained model using pickle for reproducibility."""</span></span>
+<span id="cb1-5"><a href=""></a>    <span class="cf">with</span> <span class="bu">open</span>(filename, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-6"><a href=""></a>        pickle.dump(model, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="results---feature-importance" class="slide level2">
 <h2>Results - Feature Importance</h2>

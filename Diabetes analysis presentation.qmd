@@ -3,6 +3,7 @@ title: "Group 15 522 Project"
 author: "Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez"
 format: revealjs
 jupyter: python3
+css: styles.css
 ---
 
 ## Dataset - Scope
@@ -16,7 +17,7 @@ jupyter: python3
 
 ## Dataset - Feature Descriptions
 
-::: {.small}
+::: {.feature-description}
 | **Feature**                 | **Description** |
 |-----------------------------|----------------|
 | **Pregnancies**             | Number of times the patient has been pregnant. |
@@ -27,16 +28,21 @@ jupyter: python3
 | **BMI**                     | Body mass index, calculated as weight (kg) / height (m²). |
 | **DiabetesPedigreeFunction** | A function that scores the likelihood of diabetes based on family history. |
 | **Age**                     | Age of the patient (in years). |
-| **Outcome**                 | Target variable: **1 (Diabetic), 0 (Non-Diabetic)**. **268 out of 768** patients are diabetic. |
+| **Outcome**                 | Target variable: **1 (Diabetic), 0 (Non-Diabetic)**. |
 :::
 
 ---
 
-## Dataset - Feature Distribution
-- **Histograms of key features**
-- Displays the **distribution across diabetic and non-diabetic groups**.
+## Dataset - Class Imbalance
 
-![Feature Histograms](figures/feature_histograms.png)
+::: {.class-imbalance}
+- The dataset is **imbalanced**, with significantly more **non-diabetic** cases.
+- **268 out of 768** patients (**~35%**) have diabetes, while **500 (~65%)** do not.
+- This imbalance can impact model training, leading to:
+  - A bias toward predicting **non-diabetic cases**.
+  - Potential **higher false negatives** (misclassifying diabetic patients as non-diabetic).
+:::
+![](figures/histogram_imbalance.png)
 
 ---
 
@@ -57,29 +63,44 @@ jupyter: python3
 
 ---
 
-## Analysis - Training Overview
+## Analysis - Reproducible Data Pipeline
 
-- **Baseline Model** Dummy Classifier  
-- Achieved **accuracy = 0.672** (predicting majority class).
-
-**Final Model** Logistic Regression  
-- Used **cross-validation** for **hyperparameter tuning**.
-- Optimized **C** parameter for better performance.
+::: {.class-imbalance}
+- Our analysis was structured as a **reproducible pipeline**, where each step was **dependent on the previous**.
+- We designed **customized functions** to handle:
+  - **Data preprocessing**
+  - **Feature selection**
+  - **Model training**
+  - **Evaluation & visualization**
+- Each function produced outputs such as:
+  - **Plots, tables, and trained models (saved using `pickle`)**
+- Functions were **dynamic**, allowing for:
+  - Parameter tuning
+  - Adjustability based on dependencies
+  - Seamless workflow automation
+:::
 
 ---
 
-## Analysis - Hyperparameter Tuning
-- **RandomizedSearchCV** used to optimize C.
-- Explored values from **1e-5 to 1e5**.
-- Best C found: **0.027**.
+## Analysis - Modular Function Design
+
+::: {.class-imbalance}
+- The pipeline followed a **modular structure**, ensuring:
+  - **Reusability**: Functions could be applied across different datasets.
+  - **Interdependency**: Each function received input from a previous step.
+  - **Automation**: No manual intervention needed once executed.
+  
+Example of a function saving model outputs:
 
 ```python
-from sklearn.model_selection import RandomizedSearchCV
-from sklearn.linear_model import LogisticRegression
+import pickle
 
-param_grid = {"C": loguniform(1e-5, 1e5)}
-search = RandomizedSearchCV(LogisticRegression(), param_grid, n_iter=100)
+def save_model(model, filename="logistic_regression.pkl"):
+    """Save trained model using pickle for reproducibility."""
+    with open(filename, "wb") as f:
+        pickle.dump(model, f)
 ```
+:::
 
 ---
 

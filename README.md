@@ -25,7 +25,7 @@ If you want to add additional figures or update existing ones, place them inside
 
 After making changes to presentation.qmd, render the updated presentation:
 ```sh
-quarto render presentation.qmd
+quarto render
 ```
 This will generate a new presentation.html file.
 
