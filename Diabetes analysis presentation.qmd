@@ -236,49 +236,42 @@ def save_model(model, filename="logistic_regression.pkl"):
 ---
 
 ## Discussion - Model Performance
-- Clinical Relevance: Model shows promise as a screening tool with baseline improvements.
+- Clinical Relevance: effective screening tool
 - Enhancement Approaches:
-    - Examine 54 misclassified observations and compare with correctly classified examples to identify feature contributions.
+    - Examine misclassified observations
 
 ---
 
 ## Discussion - Enhancement Opportunities
-- Explore feature engineering to improve model predictions.
-- Experiment with alternative classifiers:
-    - Random Forest: Accounts for feature interactions automatically.
-    - k-Nearest Neighbours (k-NN): Offers interpretable and decent predictions.
-    - Support Vector Classifier (SVC): Enables non-linear prediction using rbf kernel.
+- Explore feature engineering
+- Alternative classifiers:
+    - Random Forest
+    - k-Nearest Neighbours (k-NN)
+    - Support Vector Classifier (SVC)
 
 ---
 
 ## Limitations & Future Directions
-- Dataset Limitations: Focuses solely on Pima Indian women aged 21 and older, limiting generalizability.
-- Future Data Exploration:
-    - Collaborate with data collectors for additional, useable information.
-    - Combine with external datasets:
-        - Broaden demographic coverage (age, gender, ethnicity) 
-        - Enable comprehensive insights and greater applicability.
+- Dataset Limitations
+- Future Data Exploration
+    - Collaborate with data collectors
+    - Combine with external datasets
+        - Broaden demographic coverage
+        - Enable comprehensive insights and greater applicabilit
 
 ---
 
 ## Conclusion - Key Findings
-- Logistic regression effectively predicts diabetes among Pima Indian women using features like glucose, BMI, and pregnancies.
-- Achieved 0.750 accuracy on the test set, outperforming baseline Dummy Classifier’s 0.672.
-- Key predictors: Glucose (most influential) BMI, pregnancies.
+- Logistic regression vs. Dummy Classifier.
+- Key predictors/features: Glucose (most influential) BMI, pregnancies.
 - Challenges: 54 misclassifications, including 41 false negatives, highlight risks of undiagnosed cases.
-
----
-
-## Conclusion - Clinical Implications
-- Clinical Potential:
-    - Logistic regression shows promise as an initial screening tool for early diabetes detection.
-    - Provides a data-driven approach to improve outcomes and reduce complications.
+- Clinical Potential: initial screening tool, ata-driven approach to improve outcomes and reduce complications.
 
 ---
 
 ## Conclusion - Recommendations
 - Recommendations for Improvement:
-    - Feature engineering to refine predictors.
-    - Test alternative machine learning models 
+    - Feature engineering
+    - Test alternative ML models 
     - Incorporate additional data (e.g. Lifestyle factors, Genetic information etc.)
     - Include probability estimates to aid clinical decision-making.
