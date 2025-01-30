@@ -1,5 +1,5 @@
 ---
-title: "Group 15 522 Project"
+title: "Smart Diagnosis: Predicting Diabetes using Logistic Regression"
 subtitle: "Predicting Diabetes in Pima Indian Women Using Logistic Regression"
 author: "Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez"
 format: revealjs
@@ -113,10 +113,11 @@ css: styles.css
 
 ## Analysis Methodology
 
-- Data split: 70% training, 30% testing.
-- Features: structured numeric data and no missing values.
-- Preprocessing: standardization for easier coefficient interpretation and more stable model performance.
-
+- Data split: 70% training, 30% testing
+- Features: 
+  - Structured numeric data 
+  - No missing values
+- Preprocessing: standardization through `StandardScaler()`
 ---
 
 ## Analysis Methodology (cont'd)
