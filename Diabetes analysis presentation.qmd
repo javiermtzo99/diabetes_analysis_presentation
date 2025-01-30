@@ -53,6 +53,8 @@ css: styles.css
 - Pima Indian heritage
 - All at least 21 years old
 
+<br/>
+
 ![](figures/nih.png){.nostretch fig-align="center" width="600"}
 
 ---
