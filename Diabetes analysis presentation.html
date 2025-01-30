@@ -145,8 +145,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </div>
 
 </section>
-<section id="why-is-diabetic-study-important" class="slide level2">
-<h2>Why is Diabetic Study Important?</h2>
+<section class="slide level2">
+
+<h3 id="why-is-diabetic-study-important">Why is Diabetic Study Important?</h3>
 <ul>
 <li>Affects millions globally</li>
 <li>Identifying predictors helps:
@@ -157,26 +158,28 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 <li>Improve the quality of life</li>
 </ul></li>
 </ul>
-<h3 id="focus-of-study">Focus of Study:</h3>
+<h4 id="focus-of-study">Focus of Study:</h4>
 <ul>
 <li>Use logistic regression model to evaluate diabetes prediction</li>
 </ul>
 </section>
-<section id="previous-research" class="slide level2">
-<h2>Previous Research</h2>
+<section class="slide level2">
+
+<h3 id="previous-research">Previous Research</h3>
 <ul>
 <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2245318/">Use of Neural Networks (Jack W Smith, et. al)</a></li>
 <li><a href="https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data">Logistic Regression (UCI Machine Learning)</a></li>
 <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6232260/">Random Forestion (Quan Zou, et. al)</a></li>
 </ul>
-<h3 id="what-is-unique-about-our-study">What is unique about our study?</h3>
+<h4 id="what-is-unique-about-our-study">What is unique about our study?</h4>
 <ul>
 <li>Use Logistic Regression for easier interpretation</li>
 <li>Use of Data Validation for better accuracy</li>
 </ul>
 </section>
-<section id="why-use-a-logistic-regression-model" class="slide level2">
-<h2>Why use a Logistic Regression model?</h2>
+<section class="slide level2">
+
+<h3 id="why-use-a-logistic-regression-model">Why use a Logistic Regression model?</h3>
 <ul>
 <li>Study is based on Binary Classification</li>
 <li>Feature coefficients directly reflect importance</li>
@@ -187,8 +190,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul></li>
 </ul>
 </section>
-<section id="dataset-scope" class="slide level2">
-<h2>Dataset Scope</h2>
+<section class="slide level2">
+
+<h3 id="dataset-scope">Dataset Scope</h3>
 <ul>
 <li>Total 768 female patients</li>
 <li>Pima Indian heritage</li>
@@ -200,8 +204,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </figure>
 </div>
 </section>
-<section id="feature-descriptions" class="slide level2">
-<h2>Feature Descriptions</h2>
+<section class="slide level2">
+
+<h3 id="feature-descriptions">Feature Descriptions</h3>
 <div class="feature-description">
 <table class="caption-top">
 <colgroup>
@@ -271,20 +276,21 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 <li><span style="color:#FF9F43">▉</span> <strong>Calculated health metrics</strong></li>
 </ul>
 </section>
-<section id="exploratory-data-analysis" class="slide level2">
-<h2>Exploratory Data Analysis</h2>
+<section class="slide level2">
+
+<h3 id="exploratory-data-analysis">Exploratory Data Analysis</h3>
 
 <img data-src="figures/histogram_imbalance.png" class="r-stretch"></section>
-<section id="exploratory-data-analysis-1" class="slide level2">
-<h2>Exploratory Data Analysis</h2>
+<section class="slide level2">
+
+<h3 id="exploratory-data-analysis-1">Exploratory Data Analysis</h3>
 
 <img data-src="figures/eda.png" class="center r-stretch"></section>
-<section id="data-validation" class="slide level2">
-<h2>Data Validation</h2>
-<div class="columns">
-<div class="column" style="width:75%;">
-<p><img data-src="figures/glucose_outlier.png"></p>
-<ul>
+<section class="slide level2">
+
+<h3 id="data-validation">Data Validation</h3>
+
+<img data-src="figures/glucose_outlier.png" class="r-stretch"><ul>
 <li>Column constraints:
 <ul>
 <li>Free of outliers &amp; invalid values</li>
@@ -296,9 +302,6 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 <li>No columns with mixed data types</li>
 </ul></li>
 </ul>
-</div><div class="column" style="width:25%;">
-<p><img data-src="figures/validation.png"></p>
-</div></div>
 </section>
 <section class="slide level2">
 
@@ -309,8 +312,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 <li>Ensure feature correlation does not pass 0.7 threshold</li>
 </ul>
 </section>
-<section id="analysis-methodology" class="slide level2">
-<h2>Analysis Methodology</h2>
+<section class="slide level2">
+
+<h3 id="analysis-methodology">Analysis Methodology</h3>
 <ul>
 <li>Data split: 70% training, 30% testing</li>
 <li>Features:
@@ -324,8 +328,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul></li>
 </ul>
 </section>
-<section id="analysis-methodology-contd" class="slide level2">
-<h2>Analysis Methodology (cont’d)</h2>
+<section class="slide level2">
+
+<h3 id="analysis-methodology-contd">Analysis Methodology (cont’d)</h3>
 <ul>
 <li>Model evaluation metric: Accuracy</li>
 <li>Baseline model: <code>DummyClassifer</code></li>
@@ -337,8 +342,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul></li>
 </ul>
 </section>
-<section id="reproducible-data-pipeline" class="slide level2">
-<h2>Reproducible Data Pipeline</h2>
+<section class="slide level2">
+
+<h3 id="reproducible-data-pipeline">Reproducible Data Pipeline</h3>
 <ul>
 <li><p>The pipeline followed a <strong>modular structure</strong>, ensuring:</p></li>
 <li><p><strong>Reusability</strong></p></li>
@@ -347,15 +353,17 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul>
 
 <img data-src="figures/data_pipeline.png" class="r-stretch"></section>
-<section id="results---feature-importance" class="slide level2">
-<h2>Results - Feature Importance</h2>
+<section class="slide level2">
+
+<h3 id="results---feature-importance">Results - Feature Importance</h3>
 <ul>
 <li>Feature importance measured by coefficients</li>
 </ul>
 
 <img data-src="figures/coeff_table.png" class="r-stretch"></section>
-<section id="results---model-evaluation" class="slide level2">
-<h2>Results - Model Evaluation</h2>
+<section class="slide level2">
+
+<h3 id="results---model-evaluation">Results - Model Evaluation</h3>
 <ul>
 <li><u>Dummy Classifier:</u>
 <ul>
@@ -373,8 +381,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul></li>
 </ul>
 </section>
-<section id="results---confusion-matrix" class="slide level2">
-<h2>Results - Confusion Matrix</h2>
+<section class="slide level2">
+
+<h3 id="results---confusion-matrix">Results - Confusion Matrix</h3>
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><br></p>
@@ -388,8 +397,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 <p><img data-src="figures/confusion_matrix_plot.png"></p>
 </div></div>
 </section>
-<section id="results---pr-and-roc-curve" class="slide level2">
-<h2>Results - PR and ROC Curve</h2>
+<section class="slide level2">
+
+<h3 id="results---pr-and-roc-curve">Results - PR and ROC Curve</h3>
 <ul>
 <li>Model performance does not achieve optimal trade-off across all thresholds.</li>
 </ul>
@@ -400,8 +410,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 <p><img data-src="figures/roc_curve.png"></p>
 </div></div>
 </section>
-<section id="results---clinical-utility" class="slide level2">
-<h2>Results - Clinical Utility</h2>
+<section class="slide level2">
+
+<h3 id="results---clinical-utility">Results - Clinical Utility</h3>
 <ul>
 <li>Visualizing predicted probabilities to help clinicians assess model confidence.</li>
 </ul>
@@ -411,8 +422,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </figure>
 </div>
 </section>
-<section id="discussion---model-performance" class="slide level2">
-<h2>Discussion - Model Performance</h2>
+<section class="slide level2">
+
+<h3 id="discussion---model-performance">Discussion - Model Performance</h3>
 <ul>
 <li>Clinical Relevance: effective screening tool</li>
 <li>Enhancement Approaches:
@@ -421,8 +433,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul></li>
 </ul>
 </section>
-<section id="discussion---enhancement-opportunities" class="slide level2">
-<h2>Discussion - Enhancement Opportunities</h2>
+<section class="slide level2">
+
+<h3 id="discussion---enhancement-opportunities">Discussion - Enhancement Opportunities</h3>
 <ul>
 <li>Explore feature engineering</li>
 <li>Alternative classifiers:
@@ -433,8 +446,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul></li>
 </ul>
 </section>
-<section id="limitations-future-directions" class="slide level2">
-<h2>Limitations &amp; Future Directions</h2>
+<section class="slide level2">
+
+<h3 id="limitations-future-directions">Limitations &amp; Future Directions</h3>
 <ul>
 <li>Dataset Limitations</li>
 <li>Future Data Exploration
@@ -448,8 +462,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul></li>
 </ul>
 </section>
-<section id="conclusion---key-findings" class="slide level2">
-<h2>Conclusion - Key Findings</h2>
+<section class="slide level2">
+
+<h3 id="conclusion---key-findings">Conclusion - Key Findings</h3>
 <ul>
 <li>Logistic regression vs.&nbsp;Dummy Classifier.</li>
 <li>Key predictors/features: Glucose (most influential) BMI, pregnancies.</li>
@@ -457,8 +472,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 <li>Clinical Potential: initial screening tool, ata-driven approach to improve outcomes and reduce complications.</li>
 </ul>
 </section>
-<section id="conclusion---recommendations" class="slide level2">
-<h2>Conclusion - Recommendations</h2>
+<section class="slide level2">
+
+<h3 id="conclusion---recommendations">Conclusion - Recommendations</h3>
 <ul>
 <li>Recommendations for Improvement:
 <ul>
@@ -469,8 +485,9 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul></li>
 </ul>
 </section>
-<section id="references" class="slide level2">
-<h2>References</h2>
+<section class="slide level2">
+
+<h3 id="references">References</h3>
 <p><font size="5"></font></p><font size="5">
 <ul>
 <li><p>Dua, Dheeru, and Casey Graff. 2017. “Pima Indians Diabetes Database.” https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data.</p></li>

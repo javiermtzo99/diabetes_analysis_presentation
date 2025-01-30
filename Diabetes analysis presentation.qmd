@@ -15,30 +15,30 @@ jupyter: python3
 css: styles.css
 ---
 
-## Why is Diabetic Study  Important?
+### Why is Diabetic Study  Important?
 - Affects millions globally
 - Identifying predictors helps:
   - Focus on preventive measures
   - Reduce healthcare costs  
   - Improve the quality of life 
 
-### Focus of Study:
+#### Focus of Study:
 - Use logistic regression model to evaluate diabetes prediction
 
 ---
 
-## Previous Research
+### Previous Research
 - [Use of Neural Networks (Jack W Smith, et. al)](https://pmc.ncbi.nlm.nih.gov/articles/PMC2245318/)
 - [Logistic Regression (UCI Machine Learning)](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data)
 - [Random Forestion (Quan Zou, et. al)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6232260/)
 
-### What is unique about our study?
+#### What is unique about our study?
 - Use Logistic Regression for easier interpretation
 - Use of Data Validation for better accuracy
 
 ---
 
-## Why use a Logistic Regression model?
+### Why use a Logistic Regression model?
 - Study is based on Binary Classification
 - Feature coefficients directly reflect importance
 - Focus is on probabilities:
@@ -47,7 +47,7 @@ css: styles.css
 
 ---
 
-## Dataset Scope
+### Dataset Scope
 
 - Total 768 female patients
 - Pima Indian heritage
@@ -57,7 +57,7 @@ css: styles.css
 
 ---
 
-## Feature Descriptions
+### Feature Descriptions
 
 ::: {.feature-description}
 | **Feature**                 | **Type**      | **Units/Description**                                                                 |
@@ -78,23 +78,20 @@ css: styles.css
 
 ---
 
-## Exploratory Data Analysis
+### Exploratory Data Analysis
 
 ![](figures/histogram_imbalance.png)
 
 ---
 
-## Exploratory Data Analysis
+### Exploratory Data Analysis
 
 ![](figures/eda.png){.center}
 
 ---
 
-## Data Validation 
+### Data Validation 
 
-:::: {.columns}
-
-::: {.column width="75%"}
 ![](figures/glucose_outlier.png)
 
 - Column constraints: 
@@ -105,13 +102,6 @@ css: styles.css
   - No duplicate or empty rows
   - No columns with mixed data types
 
-:::
-
-::: {.column width="25%"}
-![](figures/validation.png)
-:::
-
-:::: 
 ---
 
 ### Data Validation (cont'd)
@@ -124,7 +114,7 @@ css: styles.css
 
 ---
 
-## Analysis Methodology
+### Analysis Methodology
 
 - Data split: 70% training, 30% testing
 - Features: 
@@ -134,7 +124,7 @@ css: styles.css
   - Standardization through `StandardScaler()`
 ---
 
-## Analysis Methodology (cont'd)
+### Analysis Methodology (cont'd)
 
 - Model evaluation metric: Accuracy
 - Baseline model: `DummyClassifer` 
@@ -145,7 +135,7 @@ css: styles.css
 
 ---
 
-## Reproducible Data Pipeline
+### Reproducible Data Pipeline
 
 - The pipeline followed a **modular structure**, ensuring:
 
@@ -157,7 +147,7 @@ css: styles.css
 
 ---
 
-## Results - Feature Importance
+### Results - Feature Importance
 
 - Feature importance measured by coefficients
 
@@ -165,7 +155,7 @@ css: styles.css
 
 ---
 
-## Results - Model Evaluation
+### Results - Model Evaluation
 
 - <u>Dummy Classifier:</u>
   - **Cross validation accuracy = 0.672**
@@ -178,7 +168,7 @@ css: styles.css
 
 ---
 
-## Results - Confusion Matrix
+### Results - Confusion Matrix
 
 :::: {.columns}
 
@@ -202,7 +192,7 @@ css: styles.css
 
 ---
 
-## Results - PR and ROC Curve
+### Results - PR and ROC Curve
 
 - Model performance does not achieve optimal trade-off across all thresholds.
 
@@ -220,7 +210,7 @@ css: styles.css
 
 ---
 
-## Results - Clinical Utility
+### Results - Clinical Utility
 
 - Visualizing predicted probabilities to help clinicians assess model confidence.
 
@@ -228,14 +218,14 @@ css: styles.css
 
 ---
 
-## Discussion - Model Performance
+### Discussion - Model Performance
 - Clinical Relevance: effective screening tool
 - Enhancement Approaches:
     - Examine misclassified observations
 
 ---
 
-## Discussion - Enhancement Opportunities
+### Discussion - Enhancement Opportunities
 - Explore feature engineering
 - Alternative classifiers:
     - Random Forest
@@ -244,7 +234,7 @@ css: styles.css
 
 ---
 
-## Limitations & Future Directions
+### Limitations & Future Directions
 - Dataset Limitations
 - Future Data Exploration
     - Collaborate with data collectors
@@ -254,7 +244,7 @@ css: styles.css
 
 ---
 
-## Conclusion - Key Findings
+### Conclusion - Key Findings
 - Logistic regression vs. Dummy Classifier.
 - Key predictors/features: Glucose (most influential) BMI, pregnancies.
 - Challenges: 54 misclassifications, including 41 false negatives, highlight risks of undiagnosed cases.
@@ -262,7 +252,7 @@ css: styles.css
 
 ---
 
-## Conclusion - Recommendations
+### Conclusion - Recommendations
 - Recommendations for Improvement:
     - Feature engineering
     - Test alternative ML models 
@@ -271,7 +261,7 @@ css: styles.css
 
 --- 
 
-## References
+### References
 <font size="5"> 
 
 - Dua, Dheeru, and Casey Graff. 2017. “Pima Indians Diabetes Database.” https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data.
