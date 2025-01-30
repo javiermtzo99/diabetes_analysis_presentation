@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="diabetes_analysis_presentation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="diabetes_analysis_presentation_files/libs/quarto-html/tabby.min.js"></script>
+<script src="diabetes_analysis_presentation_files/libs/quarto-html/popper.min.js"></script>
+<script src="diabetes_analysis_presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="diabetes_analysis_presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="diabetes_analysis_presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="diabetes_analysis_presentation_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
+
+  <meta name="author" content="Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez">
+  <title>Smart Diagnosis</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="diabetes_analysis_presentation_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="diabetes_analysis_presentation_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="diabetes_analysis_presentation_files/libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="diabetes_analysis_presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="diabetes_analysis_presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="diabetes_analysis_presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="diabetes_analysis_presentation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <style>
+  #title-slide .subtitle {
+    font-size: 1.5em;
+  }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Smart Diagnosis</h1>
+  <p class="subtitle">Predicting Diabetes using Logistic Regression</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez 
+</div>
+</div>
+</div>
+
+</section>
+<section class="slide level2">
+
+<h3 id="why-is-diabetic-study-important">Why is Diabetic Study Important?</h3>
+<ul>
+<li>Affects millions globally</li>
+<li>Identifying predictors helps:
+<ul>
+<li>Focus on preventive measures</li>
+<li>Reduce healthcare costs<br>
+</li>
+<li>Improve the quality of life</li>
+</ul></li>
+</ul>
+<h4 id="focus-of-study">Focus of Study:</h4>
+<ul>
+<li>Use logistic regression model to evaluate diabetes prediction</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="previous-research">Previous Research</h3>
+<ul>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2245318/">Use of Neural Networks (Jack W Smith, et. al)</a></li>
+<li><a href="https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data">Logistic Regression (UCI Machine Learning)</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6232260/">Random Forestion (Quan Zou, et. al)</a></li>
+</ul>
+<h4 id="what-is-unique-about-our-study">What is unique about our study?</h4>
+<ul>
+<li>Use Logistic Regression for easier interpretation</li>
+<li>Use of Data Validation for better accuracy</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="why-use-a-logistic-regression-model">Why use a Logistic Regression model?</h3>
+<ul>
+<li>Study is based on Binary Classification</li>
+<li>Feature coefficients directly reflect importance</li>
+<li>Focus is on probabilities:
+<ul>
+<li>More insight than just classifications</li>
+<li>Helps determine confidence level of diagnosis</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="dataset-scope">Dataset Scope</h3>
+<ul>
+<li>Total 768 female patients</li>
+<li>Pima Indian heritage</li>
+<li>All at least 21 years old</li>
+</ul>
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/nih.png" class="quarto-figure quarto-figure-center" width="600"></p>
+</figure>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="feature-descriptions">Feature Descriptions</h3>
+<div class="feature-description">
+<table class="caption-top">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 11%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Feature</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Units/Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span style="color:#4A90E2"><strong>Pregnancies</strong></span></td>
+<td>Numerical</td>
+<td>Number of pregnancies</td>
+</tr>
+<tr class="even">
+<td><span style="color:#4A90E2"><strong>Age</strong></span></td>
+<td>Numerical</td>
+<td>Age in years</td>
+</tr>
+<tr class="odd">
+<td><span style="color:#4A90E2"><strong>Glucose</strong></span></td>
+<td>Numerical</td>
+<td>Plasma glucose concentration in mg/dL</td>
+</tr>
+<tr class="even">
+<td><span style="color:#4A90E2"><strong>BloodPressure</strong></span></td>
+<td>Numerical</td>
+<td>Diastolic blood pressure measurement in mm Hg</td>
+</tr>
+<tr class="odd">
+<td><span style="color:#4A90E2"><strong>Insulin</strong></span></td>
+<td>Numerical</td>
+<td>Insulin level in mu U/ml</td>
+</tr>
+<tr class="even">
+<td><span style="color:#4A90E2"><strong>SkinThickness</strong></span></td>
+<td>Numerical</td>
+<td>Triceps skin fold thickness in mm (estimates body fat)</td>
+</tr>
+<tr class="odd">
+<td><span style="color:#FF9F43"><strong>BMI</strong></span></td>
+<td>Numerical</td>
+<td>Body Mass Index in kg/m² (indicates body fat)</td>
+</tr>
+<tr class="even">
+<td><span style="color:#FF9F43"><strong>DiabetesPedigreeFunction</strong></span></td>
+<td>Numerical</td>
+<td>Diabetes likelihood score based on family history</td>
+</tr>
+<tr class="odd">
+<td><strong>Outcome</strong></td>
+<td>Categorical</td>
+<td><span style="background:#FF6B6B; padding:2px 5px; border-radius:3px; color:white;">Diabetic</span> / <span style="background:#77DD77; padding:2px 5px; border-radius:3px; color:white;">Non-Diabetic</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><span style="color:#4A90E2">▉</span> <strong>Direct Health measurements</strong><br>
+</li>
+<li><span style="color:#FF9F43">▉</span> <strong>Calculated health metrics</strong></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+
+<img data-src="figures/histogram_imbalance.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="exploratory-data-analysis-1">Exploratory Data Analysis</h3>
+
+<img data-src="figures/eda.png" class="center r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="data-validation">Data Validation</h3>
+
+<img data-src="figures/glucose_outlier.png" class="r-stretch"><ul>
+<li>Column constraints:
+<ul>
+<li>Free of outliers &amp; invalid values</li>
+<li>Based on medically plausible range</li>
+</ul></li>
+<li>Ensure data integrity:
+<ul>
+<li>No duplicate or empty rows</li>
+<li>No columns with mixed data types</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="data-validation-contd">Data Validation (cont’d)</h3>
+
+<img data-src="figures/correlation.png" style="width:150.0%" class="r-stretch"><ul>
+<li>Identify potential multicollinearity</li>
+<li>Ensure feature correlation does not pass 0.7 threshold</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="analysis-methodology">Analysis Methodology</h3>
+<ul>
+<li>Data split: 70% training, 30% testing</li>
+<li>Features:
+<ul>
+<li>Structured numeric data</li>
+<li>No missing values</li>
+</ul></li>
+<li>Preprocessing:
+<ul>
+<li>Standardization through <code>StandardScaler()</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="analysis-methodology-contd">Analysis Methodology (cont’d)</h3>
+<ul>
+<li>Model evaluation metric: Accuracy</li>
+<li>Baseline model: <code>DummyClassifer</code></li>
+<li>Choosen model: <code>LogisticRegression</code></li>
+<li>Hyperparameter tuning:
+<ul>
+<li>Optimize regularization strength <code>C</code> between <span class="math inline">\(10 ^{-5}\)</span> and <span class="math inline">\(10 ^{5}\)</span></li>
+<li>Use method <code>RandomizedSearchCV()</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="reproducible-data-pipeline">Reproducible Data Pipeline</h3>
+<ul>
+<li><p>The pipeline followed a <strong>modular structure</strong>, ensuring:</p></li>
+<li><p><strong>Reusability</strong></p></li>
+<li><p><strong>Interdependency</strong></p></li>
+<li><p><strong>Automation</strong></p></li>
+</ul>
+
+<img data-src="figures/data_pipeline.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="results---feature-importance">Results - Feature Importance</h3>
+<ul>
+<li>Feature importance measured by coefficients</li>
+</ul>
+
+<img data-src="figures/coeff_table.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="results---model-evaluation">Results - Model Evaluation</h3>
+<ul>
+<li><u>Dummy Classifier:</u>
+<ul>
+<li><strong>Cross validation accuracy = 0.672</strong></li>
+</ul></li>
+<li><u>Logistic Regression:</u>
+<ul>
+<li>Best hyperparameter C <span class="math inline">\(\approx\)</span> 0.027</li>
+<li>Cross validation:
+<ul>
+<li>Training accuracy = 0.786</li>
+<li>Validation accuracy = 0.781</li>
+</ul></li>
+<li><strong>Test set accuracy = 0.750</strong></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="results---confusion-matrix">Results - Confusion Matrix</h3>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<h4 id="total-test-cases">216 total test cases</h4>
+<p><strong>54 misclassifications</strong></p>
+<ul>
+<li><p><em>41 false negatives</em></p></li>
+<li><p><em>13 false positives</em></p></li>
+</ul>
+</div><div class="column" style="width:60%;">
+<p><img data-src="figures/confusion_matrix_plot.png"></p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="results---pr-and-roc-curve">Results - PR and ROC Curve</h3>
+<ul>
+<li>Model performance does not achieve optimal trade-off across all thresholds.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="figures/precision_recall_plot.png"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="figures/roc_curve.png"></p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="results---clinical-utility">Results - Clinical Utility</h3>
+<ul>
+<li>Visualizing predicted probabilities to help clinicians assess model confidence.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/predict_chart.png" class="quarto-figure quarto-figure-center" width="750"></p>
+</figure>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="discussion---model-performance">Discussion - Model Performance</h3>
+<ul>
+<li>Clinical Relevance: effective screening tool</li>
+<li>Enhancement Approaches:
+<ul>
+<li>Examine misclassified observations</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="discussion---enhancement-opportunities">Discussion - Enhancement Opportunities</h3>
+<ul>
+<li>Explore feature engineering</li>
+<li>Alternative classifiers:
+<ul>
+<li>Random Forest</li>
+<li>k-Nearest Neighbours (k-NN)</li>
+<li>Support Vector Classifier (SVC)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="limitations-future-directions">Limitations &amp; Future Directions</h3>
+<ul>
+<li>Dataset Limitations</li>
+<li>Future Data Exploration
+<ul>
+<li>Collaborate with data collectors</li>
+<li>Combine with external datasets
+<ul>
+<li>Broaden demographic coverage</li>
+<li>Enable comprehensive insights and greater applicabilit</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="conclusion---key-findings">Conclusion - Key Findings</h3>
+<ul>
+<li>Logistic regression vs.&nbsp;Dummy Classifier.</li>
+<li>Key predictors/features: Glucose (most influential) BMI, pregnancies.</li>
+<li>Challenges: 54 misclassifications, including 41 false negatives, highlight risks of undiagnosed cases.</li>
+<li>Clinical Potential: initial screening tool, data-driven approach to improve outcomes and reduce complications.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="conclusion---recommendations">Conclusion - Recommendations</h3>
+<ul>
+<li>Recommendations for Improvement:
+<ul>
+<li>Feature engineering</li>
+<li>Test alternative ML models</li>
+<li>Incorporate additional data (e.g.&nbsp;Lifestyle factors, Genetic information etc.)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="references">References</h3>
+<p><font size="5"></font></p><font size="5">
+<ul>
+<li><p>Dua, Dheeru, and Casey Graff. 2017. “Pima Indians Diabetes Database.” https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data.</p></li>
+<li><p>Harris, Charles R, K Jarrod Millman, Stéfan J Van Der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, et al.&nbsp;2020. “Array Programming with NumPy.” Nature 585 (7825): 357–62. https://doi.org/10.1038/s41586-020-2649-2.</p></li>
+<li><p>McKinney, Wes. 2010. “Data Structures for Statistical Computing in Python.” In Proceedings of the 9th Python in Science Conference, edited by Stéfan van der Walt and Jarrod Millman, 51–56. https://doi.org/10.25080/Majora-92bf1922-00a.</p></li>
+<li><p>Ostblom, Joakim. 2021. “Altair_ally: Enhancing Altair for Statistical Visualization.” https://github.com/jostblom/altair_ally.</p></li>
+<li><p>Pedregosa, Fabian, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, et al.&nbsp;2011. “Scikit-Learn: Machine Learning in Python.” The Journal of Machine Learning Research 12: 2825–30. https://doi.org/10.48550/arXiv.1201.0490.</p></li>
+<li><p>Van Rossum, Guido, and Fred L. Drake. 2009. Python 3 Reference Manual. Scotts Valley, CA: CreateSpace.</p></li>
+<li><p>VanderPlas, Jake. 2018. “Altair: Interactive Statistical Visualizations for Python.” Journal of Open Source Software 3 (7825, 32): 1057. https://doi.org/10.21105/joss.01057.</p></li>
+</ul>
+</font><p><font size="5"></font></p>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="diabetes_analysis_presentation_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
