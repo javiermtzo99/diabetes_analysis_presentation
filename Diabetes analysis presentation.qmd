@@ -259,7 +259,6 @@ css: styles.css
     - Feature engineering
     - Test alternative ML models 
     - Incorporate additional data (e.g. Lifestyle factors, Genetic information etc.)
-    - Include probability estimates to aid clinical decision-making.
 
 --- 
 
