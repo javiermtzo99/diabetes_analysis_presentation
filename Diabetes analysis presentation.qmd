@@ -1,8 +1,15 @@
 ---
-title: "Smart Diagnosis: Predicting Diabetes using Logistic Regression"
-subtitle: "Predicting Diabetes in Pima Indian Women Using Logistic Regression"
+title: "Smart Diagnosis"
+subtitle: "Predicting Diabetes using Logistic Regression"
 author: "Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez"
 format: revealjs
+include-in-header:
+  - text: |
+      <style>
+      #title-slide .subtitle {
+        font-size: 1.5em;
+      }
+      </style>
 slide-number: true
 jupyter: python3
 css: styles.css
@@ -42,11 +49,11 @@ css: styles.css
 
 ## Dataset Scope
 
-- 768 female total patients
+- Total 768 female patients
 - Pima Indian heritage
 - All at least 21 years old
 
-![](figures/nih.png)
+![](figures/nih.png){.nostretch fig-align="center" width="600"}
 
 ---
 
@@ -123,15 +130,18 @@ css: styles.css
 - Features: 
   - Structured numeric data 
   - No missing values
-- Preprocessing: standardization through `StandardScaler()`
+- Preprocessing: 
+  - Standardization through `StandardScaler()`
 ---
 
 ## Analysis Methodology (cont'd)
 
-- Accuracy as the evaluation metric for model performance.
-- DummyClassifer as baseline model.
-- Logistic Regression model for classification.
-- Hyperparameter tuning use RandomizedSearchCV to optimize `C` within the range from $10 ^{-5}$ to $10 ^{5}$.
+- Model evaluation metric: Accuracy
+- Baseline model: `DummyClassifer` 
+- Choosen model: `LogisticRegression`
+- Hyperparameter tuning: 
+  - Optimize regularization strength `C` between $10 ^{-5}$ and $10 ^{5}$ 
+  - Use method `RandomizedSearchCV()`
 
 ---
 
@@ -157,10 +167,14 @@ css: styles.css
 
 ## Results - Model Evaluation
 
-- Dummy Classifier accuracy = 0.672.
-- Logistic Regression accuracy:
-  - Training set = [0.743] (cross-validation mean)
-  - Test set = 0.750
+- <u>Dummy Classifier:</u>
+  - **Cross validation accuracy = 0.672**
+- <u>Logistic Regression:</u>
+  - Best hyperparameter C $\approx$ 0.027
+  - Cross validation: 
+    - Training accuracy = 0.786
+    - Validation accuracy = 0.781
+  - **Test set accuracy = 0.750**
 
 ---
 
@@ -171,7 +185,7 @@ css: styles.css
 ::: {.column width="40%"}
 <br/>
 
-#### 217 total test cases
+#### 216 total test cases
 
 **54 misclassifications**
 
