@@ -29,71 +29,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="Diabetes analysis presentation_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="styles.css">
@@ -440,86 +375,94 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 </ul></li>
 </ul>
 </section>
-<section id="dataset---scope" class="slide level2">
-<h2>Dataset - Scope</h2>
+<section id="dataset-scope" class="slide level2">
+<h2>Dataset Scope</h2>
 <ul>
-<li>The dataset contains 768 female patients of Pima Indian heritage, all at least 21 years old.</li>
-<li>This dataset comes from the National Institute of Diabetes and Digestive and Kidney Diseases and was created by selecting instances from a larger medical database.</li>
-<li>The goal: Predict diabetes (Yes/No) based on diagnostic features.</li>
-<li>Available via Kaggle:<br>
-<a href="https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data">Pima Indians Diabetes Database</a>.</li>
+<li>768 female total patients</li>
+<li>Pima Indian heritage</li>
+<li>All at least 21 years old</li>
 </ul>
-</section>
-<section id="dataset---feature-descriptions" class="slide level2">
-<h2>Dataset - Feature Descriptions</h2>
+
+<img data-src="figures/nih.png" class="r-stretch"></section>
+<section id="feature-descriptions" class="slide level2">
+<h2>Feature Descriptions</h2>
 <div class="feature-description">
 <table class="caption-top">
 <colgroup>
-<col style="width: 64%">
-<col style="width: 35%">
+<col style="width: 22%">
+<col style="width: 11%">
+<col style="width: 66%">
 </colgroup>
 <thead>
 <tr class="header">
 <th><strong>Feature</strong></th>
-<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Units/Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Pregnancies</strong></td>
-<td>Number of times the patient has been pregnant.</td>
+<td><span style="color:#4A90E2"><strong>Pregnancies</strong></span></td>
+<td>Numerical</td>
+<td>Number of pregnancies</td>
 </tr>
 <tr class="even">
-<td><strong>Glucose</strong></td>
-<td>Plasma glucose concentration measured 2 hours after an oral glucose tolerance test.</td>
+<td><span style="color:#4A90E2"><strong>Age</strong></span></td>
+<td>Numerical</td>
+<td>Age in years</td>
 </tr>
 <tr class="odd">
-<td><strong>BloodPressure</strong></td>
-<td>Diastolic blood pressure (mm Hg).</td>
+<td><span style="color:#4A90E2"><strong>Glucose</strong></span></td>
+<td>Numerical</td>
+<td>Plasma glucose concentration in mg/dL</td>
 </tr>
 <tr class="even">
-<td><strong>SkinThickness</strong></td>
-<td>Triceps skin fold thickness (mm), used to estimate body fat.</td>
+<td><span style="color:#4A90E2"><strong>BloodPressure</strong></span></td>
+<td>Numerical</td>
+<td>Diastolic blood pressure measurement in mm Hg</td>
 </tr>
 <tr class="odd">
-<td><strong>Insulin</strong></td>
-<td>2-hour serum insulin level (mu U/ml).</td>
+<td><span style="color:#4A90E2"><strong>Insulin</strong></span></td>
+<td>Numerical</td>
+<td>Insulin level in mu U/ml</td>
 </tr>
 <tr class="even">
-<td><strong>BMI</strong></td>
-<td>Body mass index, calculated as weight (kg) / height (m²).</td>
+<td><span style="color:#4A90E2"><strong>SkinThickness</strong></span></td>
+<td>Numerical</td>
+<td>Triceps skin fold thickness in mm (estimates body fat)</td>
 </tr>
 <tr class="odd">
-<td><strong>DiabetesPedigreeFunction</strong></td>
-<td>A function that scores the likelihood of diabetes based on family history.</td>
+<td><span style="color:#FF9F43"><strong>BMI</strong></span></td>
+<td>Numerical</td>
+<td>Body Mass Index in kg/m² (indicates body fat)</td>
 </tr>
 <tr class="even">
-<td><strong>Age</strong></td>
-<td>Age of the patient (in years).</td>
+<td><span style="color:#FF9F43"><strong>DiabetesPedigreeFunction</strong></span></td>
+<td>Numerical</td>
+<td>Diabetes likelihood score based on family history</td>
 </tr>
 <tr class="odd">
 <td><strong>Outcome</strong></td>
-<td>Target variable: <strong>1 (Diabetic), 0 (Non-Diabetic)</strong>.</td>
+<td>Categorical</td>
+<td><span style="background:#FF6B6B; padding:2px 5px; border-radius:3px; color:white;">Diabetic</span> / <span style="background:#77DD77; padding:2px 5px; border-radius:3px; color:white;">Non-Diabetic</span></td>
 </tr>
 </tbody>
 </table>
 </div>
-</section>
-<section id="dataset---class-imbalance" class="slide level2">
-<h2>Dataset - Class Imbalance</h2>
-<div class="class-imbalance">
 <ul>
-<li>The dataset is <strong>imbalanced</strong>, with significantly more <strong>non-diabetic</strong> cases.</li>
-<li><strong>268 out of 768</strong> patients (<strong>~35%</strong>) have diabetes, while <strong>500 (~65%)</strong> do not.</li>
-<li>This imbalance can impact model training, leading to:
-<ul>
-<li>A bias toward predicting <strong>non-diabetic cases</strong>.</li>
-<li>Potential <strong>higher false negatives</strong> (misclassifying diabetic patients as non-diabetic).</li>
-</ul></li>
+<li><span style="color:#4A90E2">▉</span> <strong>Direct Health measurements</strong><br>
+</li>
+<li><span style="color:#FF9F43">▉</span> <strong>Calculated health metrics</strong></li>
 </ul>
-</div>
+</section>
+<section id="exploratory-data-analysis" class="slide level2">
+<h2>Exploratory Data Analysis</h2>
 
 <img data-src="figures/histogram_imbalance.png" class="r-stretch"></section>
+<section id="exploratory-data-analysis-1" class="slide level2">
+<h2>Exploratory Data Analysis</h2>
+
+<img data-src="figures/eda.png" class="center r-stretch"></section>
 <section id="data-validation---pandera" class="slide level2">
 <h2>Data Validation - Pandera</h2>
 <p><span style="font-size: 10px;"> <!-- Adjusted the size to 14px --> <img data-src="figures/glucose_outlier.png" style="width:50.0%"></span></p>
@@ -564,51 +507,16 @@ Inder Khera, Jenny Zhang, Jessica Kuo, Javier Martinez
 <li>Hyperparameter tuning use RandomizedSearchCV to optimize <code>C</code> within the range from <span class="math inline">\(10 ^{-5}\)</span> to <span class="math inline">\(10 ^{5}\)</span>.</li>
 </ul>
 </section>
-<section id="analysis---reproducible-data-pipeline" class="slide level2">
-<h2>Analysis - Reproducible Data Pipeline</h2>
-<div class="class-imbalance">
+<section id="reproducible-data-pipeline" class="slide level2">
+<h2>Reproducible Data Pipeline</h2>
 <ul>
-<li>Our analysis was structured as a <strong>reproducible pipeline</strong>, where each step was <strong>dependent on the previous</strong>.</li>
-<li>We designed <strong>customized functions</strong> to handle:
-<ul>
-<li><strong>Data preprocessing</strong></li>
-<li><strong>Feature selection</strong></li>
-<li><strong>Model training</strong></li>
-<li><strong>Evaluation &amp; visualization</strong></li>
-</ul></li>
-<li>Each function produced outputs such as:
-<ul>
-<li><strong>Plots, tables, and trained models (saved using <code>pickle</code>)</strong></li>
-</ul></li>
-<li>Functions were <strong>dynamic</strong>, allowing for:
-<ul>
-<li>Parameter tuning</li>
-<li>Adjustability based on dependencies</li>
-<li>Seamless workflow automation</li>
-</ul></li>
+<li><p>The pipeline followed a <strong>modular structure</strong>, ensuring:</p></li>
+<li><p><strong>Reusability</strong></p></li>
+<li><p><strong>Interdependency</strong></p></li>
+<li><p><strong>Automation</strong></p></li>
 </ul>
-</div>
-</section>
-<section id="analysis---modular-function-design" class="slide level2">
-<h2>Analysis - Modular Function Design</h2>
-<div class="class-imbalance">
-<ul>
-<li>The pipeline followed a <strong>modular structure</strong>, ensuring:
-<ul>
-<li><strong>Reusability</strong>: Functions could be applied across different datasets.</li>
-<li><strong>Interdependency</strong>: Each function received input from a previous step.</li>
-<li><strong>Automation</strong>: No manual intervention needed once executed.</li>
-</ul></li>
-</ul>
-<p>Example of a function saving model outputs:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">import</span> pickle</span>
-<span id="cb1-2"><a href=""></a></span>
-<span id="cb1-3"><a href=""></a><span class="kw">def</span> save_model(model, filename<span class="op">=</span><span class="st">"logistic_regression.pkl"</span>):</span>
-<span id="cb1-4"><a href=""></a>    <span class="co">"""Save trained model using pickle for reproducibility."""</span></span>
-<span id="cb1-5"><a href=""></a>    <span class="cf">with</span> <span class="bu">open</span>(filename, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb1-6"><a href=""></a>        pickle.dump(model, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
+
+<img data-src="figures/data_pipeline.png" class="r-stretch"></section>
 <section id="results---feature-importance" class="slide level2">
 <h2>Results - Feature Importance</h2>
 <ul>
