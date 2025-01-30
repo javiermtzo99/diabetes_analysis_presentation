@@ -250,7 +250,7 @@ css: styles.css
 - Logistic regression vs. Dummy Classifier.
 - Key predictors/features: Glucose (most influential) BMI, pregnancies.
 - Challenges: 54 misclassifications, including 41 false negatives, highlight risks of undiagnosed cases.
-- Clinical Potential: initial screening tool, ata-driven approach to improve outcomes and reduce complications.
+- Clinical Potential: initial screening tool, data-driven approach to improve outcomes and reduce complications.
 
 ---
 
