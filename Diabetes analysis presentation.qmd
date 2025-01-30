@@ -77,6 +77,12 @@ css: styles.css
 
 ---
 
+## Exploratory Data Analysis
+
+![](figures/eda.png){.center}
+
+---
+
 ## Data Validation 
 
 :::: {.columns}
