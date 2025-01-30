@@ -36,43 +36,46 @@ css: styles.css
 
 ---
 
-## Dataset - Scope
-- The dataset contains 768 female patients of Pima Indian heritage, all at least 21 years old.
-- This dataset comes from the National Institute of Diabetes and Digestive and Kidney Diseases and was created by selecting instances from a larger medical database.
-- The goal: Predict diabetes (Yes/No) based on diagnostic features.
-- Available via Kaggle:  
-  [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data).
+## Dataset Scope
+
+- 768 female total patients
+- Pima Indian heritage
+- All at least 21 years old
+
+![](figures/nih.png)
 
 ---
 
-## Dataset - Feature Descriptions
+## Feature Descriptions
 
 ::: {.feature-description}
-| **Feature**                 | **Description** |
-|-----------------------------|----------------|
-| **Pregnancies**             | Number of times the patient has been pregnant. |
-| **Glucose**                 | Plasma glucose concentration measured 2 hours after an oral glucose tolerance test. |
-| **BloodPressure**           | Diastolic blood pressure (mm Hg). |
-| **SkinThickness**           | Triceps skin fold thickness (mm), used to estimate body fat. |
-| **Insulin**                 | 2-hour serum insulin level (mu U/ml). |
-| **BMI**                     | Body mass index, calculated as weight (kg) / height (m²). |
-| **DiabetesPedigreeFunction** | A function that scores the likelihood of diabetes based on family history. |
-| **Age**                     | Age of the patient (in years). |
-| **Outcome**                 | Target variable: **1 (Diabetic), 0 (Non-Diabetic)**. |
+| **Feature**                 | **Type**      | **Units/Description**                                                                 |
+|-----------------------------|---------------|---------------------------------------------------------------------------------------|
+| <span style="color:#4A90E2">**Pregnancies**</span>        | Numerical     | Number of pregnancies                                                                 |
+| <span style="color:#4A90E2">**Age**</span>                | Numerical     | Age in years                                                                          |
+| <span style="color:#4A90E2">**Glucose**</span>            | Numerical     | Plasma glucose concentration in mg/dL                                                |
+| <span style="color:#4A90E2">**BloodPressure**</span>      | Numerical     | Diastolic blood pressure measurement in mm Hg                                         |
+| <span style="color:#4A90E2">**Insulin**</span>            | Numerical     | Insulin level in mu U/ml                                                 |
+| <span style="color:#4A90E2">**SkinThickness**</span>      | Numerical     | Triceps skin fold thickness in mm (estimates body fat)                               |
+| <span style="color:#FF9F43">**BMI**</span>                | Numerical     | Body Mass Index in kg/m² (indicates body fat)                                         |
+| <span style="color:#FF9F43">**DiabetesPedigreeFunction**</span> | Numerical | Diabetes likelihood score based on family history                                    |
+| **Outcome**                 | Categorical   | <span style="background:#FF6B6B; padding:2px 5px; border-radius:3px; color:white;">Diabetic</span> / <span style="background:#77DD77; padding:2px 5px; border-radius:3px; color:white;">Non-Diabetic</span> |
 :::
+
+- <span style="color:#4A90E2">▉</span> **Direct Health measurements**  
+- <span style="color:#FF9F43">▉</span> **Calculated health metrics**  
 
 ---
 
-## Dataset - Class Imbalance
+## Exploratory Data Analysis
 
-::: {.class-imbalance}
-- The dataset is **imbalanced**, with significantly more **non-diabetic** cases.
-- **268 out of 768** patients (**~35%**) have diabetes, while **500 (~65%)** do not.
-- This imbalance can impact model training, leading to:
-  - A bias toward predicting **non-diabetic cases**.
-  - Potential **higher false negatives** (misclassifying diabetic patients as non-diabetic).
-:::
 ![](figures/histogram_imbalance.png)
+
+---
+
+## Exploratory Data Analysis
+
+![](figures/eda.png){.center}
 
 ---
 
@@ -127,44 +130,15 @@ css: styles.css
 
 ---
 
-## Analysis - Reproducible Data Pipeline
+## Reproducible Data Pipeline
 
-::: {.class-imbalance}
-- Our analysis was structured as a **reproducible pipeline**, where each step was **dependent on the previous**.
-- We designed **customized functions** to handle:
-  - **Data preprocessing**
-  - **Feature selection**
-  - **Model training**
-  - **Evaluation & visualization**
-- Each function produced outputs such as:
-  - **Plots, tables, and trained models (saved using `pickle`)**
-- Functions were **dynamic**, allowing for:
-  - Parameter tuning
-  - Adjustability based on dependencies
-  - Seamless workflow automation
-:::
-
----
-
-## Analysis - Modular Function Design
-
-::: {.class-imbalance}
 - The pipeline followed a **modular structure**, ensuring:
-  - **Reusability**: Functions could be applied across different datasets.
-  - **Interdependency**: Each function received input from a previous step.
-  - **Automation**: No manual intervention needed once executed.
-  
-Example of a function saving model outputs:
 
-```python
-import pickle
+- **Reusability**
+- **Interdependency**
+- **Automation**
 
-def save_model(model, filename="logistic_regression.pkl"):
-    """Save trained model using pickle for reproducibility."""
-    with open(filename, "wb") as f:
-        pickle.dump(model, f)
-```
-:::
+![](figures/data_pipeline.png)
 
 ---
 
