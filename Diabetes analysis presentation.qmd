@@ -9,10 +9,14 @@ css: styles.css
 ---
 
 ## Why is Diabetic Study  Important?
-- Diabetes is a widespread condition affecting millions globally
-- Identifying predictors helps focus on preventive measures for at-risk populations
-- Different populations may have unique risk factors
-- Reduce healthcare costs and improve the quality of life by preventing long-term complications
+- Affects millions globally
+- Identifying predictors helps:
+  - Focus on preventive measures
+  - Reduce healthcare costs  
+  - Improve the quality of life 
+
+### Focus of Study:
+- Use logistic regression model to evaluate diabetes prediction
 
 ---
 
@@ -22,17 +26,17 @@ css: styles.css
 - [Random Forestion (Quan Zou, et. al)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6232260/)
 
 ### What is unique about our study?
-- Using Logistic Regression for easier interpretation
-- Use of Data Validation and Class Imbalance for better accuracy
+- Use Logistic Regression for easier interpretation
+- Use of Data Validation for better accuracy
 
 ---
 
 ## Why use a Logistic Regression model?
-- Study about predicting whether an individual has diabetes or not
-  - Binary Classification
-- Provides feature coefficients that directly reflect the importance and direction
-- Focis is on probabilities rather than hard classifications
-  -  Can help clinicians determine confidence level of a diagnosis
+- Study is based on Binary Classification
+- Feature coefficients directly reflect importance
+- Focus is on probabilities:
+  - More insight than just classifications
+  - Helps determine confidence level of diagnosis
 
 ---
 
@@ -73,43 +77,37 @@ css: styles.css
 
 ---
 
-## Exploratory Data Analysis
+## Data Validation 
 
-![](figures/eda.png){.center}
-
----
-
-## Data Validation - Pandera
-<span style="font-size: 10px;"> <!-- Adjusted the size to 14px -->
-![](figures/glucose_outlier.png){width=50%}
-
-- Ensures data integrity: Free of outliers & invalid values
-- Based on medically plausible values:
-  - Glucose & Blood Pressure can't be 0 if person is alive
-
-![](figures/schema.png){width=70%}
-</span>
-
----
-
-### Data Validation - Deepchecks
 :::: {.columns}
 
-::: {.column width="60%"}
-![](figures/correlation.png)
+::: {.column width="75%"}
+![](figures/glucose_outlier.png)
 
-![](figures/deepcheck.png)
+- Column constraints: 
+  - Free of outliers & invalid values
+  - Based on medically plausible range
+
+- Ensure data integrity: 
+  - No duplicate or empty rows
+  - No columns with mixed data types
+
 :::
 
-::: {.column width="40%"}
-<br/>
-
-- Correlations close to standard multicollinearity threshold of 0.7
-
-- Use Deepchecks to ensure no multicollinearity is occuring
+::: {.column width="25%"}
+![](figures/validation.png)
 :::
 
 :::: 
+---
+
+### Data Validation (cont'd)
+
+![](figures/correlation.png){width=150%}
+
+- Identify potential multicollinearity
+- Ensure feature correlation does not pass 0.7 threshold
+  
 
 ---
 
