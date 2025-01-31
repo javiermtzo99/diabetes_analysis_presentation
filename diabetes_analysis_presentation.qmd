@@ -113,7 +113,6 @@ css: styles.css
 - Identify potential multicollinearity
 - Ensure feature correlation does not pass 0.7 threshold
   
-
 ---
 
 ### Analysis Methodology
@@ -124,6 +123,7 @@ css: styles.css
   - No missing values
 - Preprocessing: 
   - Standardization through `StandardScaler()`
+
 ---
 
 ### Analysis Methodology (cont'd)
