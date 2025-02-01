@@ -94,7 +94,7 @@ css: styles.css
 
 ### Data Validation 
 
-![](figures/glucose_outlier.png)
+![](figures/glucose_outlier.png){.nostretch fig-align="center" width="700"}
 
 - Column constraints: 
   - Free of outliers & invalid values
